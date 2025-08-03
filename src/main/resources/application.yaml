@@ -44,4 +44,4 @@ mattermost:
 
 openweather:
   api-key: ""
-  base-url: ""
+  base-url: "https://api.openweathermap.org/data/2.5/weather"

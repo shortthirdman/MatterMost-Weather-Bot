@@ -46,7 +46,7 @@ public class MatterMostService {
         message.setUsername(botUserName);
         message.setText(formatWeatherMessage(weatherData));
         message.setChannel("town-square");
-        message.setIconEmoji(WeatherIcon.fromCondition(weatherData.getWeather().get(0).getDescription()).getEmoji());
+        message.setIconEmoji(WeatherIcon.fromCondition(weatherData.getWeather().getFirst().getDescription()).getEmoji());
         matterMostBotClient.sendMessage(message);
     }
 
@@ -67,7 +67,7 @@ public class MatterMostService {
                 country,
                 weather.getMain().getTemp(),
                 weather.getMain().getFeelsLike(),
-                weather.getWeather().get(0).getDescription(),
+                weather.getWeather().getFirst().getDescription(),
                 weather.getMain().getHumidity(),
                 weather.getWind().getSpeed()
         );
