@@ -1,0 +1,47 @@
+server:
+  address: localhost
+  port: 8080
+  servlet:
+    context-path: /weatherbot
+    encoding:
+      enabled: true
+      charset: UTF-8
+
+spring:
+  application:
+    name: mattermost-weather-bot
+  quartz:
+    auto-startup: true
+    startup-delay: 30s
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    port: 25
+    password: mmuser@1234
+    username: mattermost-weatherbot@gmail.com
+    protocol: smtp
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: mattermost
+    password: mattermost
+    hikari:
+      allow-pool-suspension: true
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      auto-commit: true
+      driver-class-name: ${spring.datasource.driver-class-name}
+  jackson:
+    property-naming-strategy: camelCase
+    default-leniency: true
+
+mattermost:
+  webhook:
+    username: 'Weather Bot'
+    url: "http://localhost:8065/hooks/<your-key>"
+  bot:
+    cron: "0 0 * * * *"
+
+
+openweather:
+  api-key: ""
+  base-url: "https://api.openweathermap.org/data/2.5/weather"
