@@ -2,6 +2,9 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.4'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id "eclipse" // optional (to generate Eclipse project files)
+	id "idea" // optional (to generate IntelliJ IDEA project files)
+	id "io.freefair.lombok" version "8.4"
 }
 
 group = 'com.shortthirdman.mattermostbot'
@@ -44,4 +47,20 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+
+compileJava {
+    options.incremental = true
+    options.fork = true
+    options.failOnError = false
+}
+
+jar {
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                   "Implementation-Version": archiveVersion)
+    }
 }
